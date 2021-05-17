@@ -32,3 +32,32 @@ div.flash-error {
     background-color: #f0f0f0;
     border: 2px solid red;
 }
+h1 {
+    font-size: 1.5em;
+}
+p.log{
+    display:inline-block;
+    float: right;
+    color:gray;
+    background-color: white;
+    padding: 0.8em;
+    margin : 0 0.4em 1em 0;
+}
+
+p.log:hover{
+    color: white;
+    background-color:lightseagreen;
+}
+
+input[type=text]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 0.2em solid #555;
+    outline: none;
+}
+
+input[type=text]:focus {
+    border: 0.2em solid lightseagreen;
+}

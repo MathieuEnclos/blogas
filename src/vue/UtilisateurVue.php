@@ -1,7 +1,6 @@
 <?php
 
 namespace blogapp\vue;
-
 use blogapp\vue\Vue;
 
 class UtilisateurVue extends Vue {
@@ -18,9 +17,19 @@ class UtilisateurVue extends Vue {
 
     public function nouveau() {
         return <<<YOP
+        <h1>Formulaire d'inscription</h1>
         <form method="post" action="{$this->cont['router']->pathFor('util_cree')}">
-          <input type="text" name="nom">
-          <input type="submit" value="Go go go !">
+            <label for="pseudo">Pseudo</label>
+            <input id="pseudo" type="text" value="DarkMetal92">
+            <label for="nom">Nom</label>
+            <input id="nom" type="text" value="Pivert">
+            <label for="prenom">Prénom</label>
+            <input id="prenom" type="text" value="Augustin">
+            <label for="email">E-mail</label>
+            <input id="email" type="text" value="augustin.pivert@domaine.fr">
+            <label for="mdp">Mot de passe</label>
+            <input id="mdp" type="text" value="">
+            <input type="submit" value="Inscription">
         </form>
 YOP;
     }

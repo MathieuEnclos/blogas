@@ -25,8 +25,8 @@ class Vue {
         $flash = $this->cont->flash->getMessages();
         // Décommenter la ligne suivante pour voir la
         // structure des flashs (pour info)
-        //var_dump($flash);
-        $res = <<<YOP
+        // var_dump($flash);
+        $res = <<< YOP
  <!doctype html>
  <html>
    <head>
@@ -35,11 +35,18 @@ class Vue {
      <meta charset="utf-8" />
    </head>
    <body>
+   <!-- COMMENTAIRE : ici, les liens sont cliquables, mais je n'ai pas trouvé l'adressage pour
+   afficher les vues correspondantes (UtilisateurVue::nouveau et MembreVUe::connecte)
+   -->
+   <div id=log>
+        <a href="xxxxxxxxxxxx"><p class="log">Connexion</p></a>
+        <a href="xxxxxxxxxxxx"><p class="log">Inscription</p></a>
+    </div>
 YOP;
         // Gestion des flashs
         if ($flash) {
             foreach ($flash as $catFlash => $lesFlash) {
-                $res .= <<<YOP
+                $res .= <<< YOP
             <div class="flash-$catFlash">
               <ul>
 YOP;
@@ -55,7 +62,6 @@ YOP;
    </body>
 </html>
 YOP;
-
         return $res;
     }
 }
