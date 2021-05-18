@@ -45,6 +45,7 @@ $app->get('/billets',
           '\blogapp\controleur\BilletControleur:liste')
     ->setName('billet_liste');
 
+// routes d'inscription
 $app->get('/newutil',
           '\blogapp\controleur\UtilisateurControleur:nouveau')
     ->setName('util_nouveau');
@@ -53,12 +54,7 @@ $app->post('/createutil',
           '\blogapp\controleur\UtilisateurControleur:cree')
     ->setName('util_cree');
 
-/**
- * j'ai commencé tes routes - à compléter -
- * la première, l'affichage de la vue de connexion fonctionne
- * le flash ne fonctionne pas au clic de connexion : il devrait même
- * sans interagir avec la base de données ( comme pour l'utilisateur non membre)
- **/
+//routes de connexion
 $app->get('/connexion',
             '\blogapp\controleur\MembreControleur:connecte')
     ->setName('memb_co');

@@ -20,9 +20,9 @@ class MembreVue extends Vue {
         <h1>Connexion</h1>
         <form method="post" action="{$this->cont['router']->pathFor('memb_co')}">
             <label for="email">E-mail</label>
-            <input id="email" type="text" value="">
+            <input id="email" name="email" type="text">
             <label for="mdp">Mot de passe</label>
-            <input id="mdp" type="text" value="">
+            <input id="mdp" name="password" type="password">
             <input type="submit" value="Connexion">
         </form>
 YOP;

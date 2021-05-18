@@ -18,10 +18,11 @@ class UtilisateurControleur {
     }
     
     /**
-     * pb récupération des données du formulaire : fixed
-     * reste à controler le mot de passe en double saisie
-     * reste à sécuriser le mot de passe, car je crois qu'il faut une manip en plus
-     * reste à filtrer correctement l'email si le format n'est pas bon
+     * récupération des données du formulaire : fixed
+     * filtrage email : fixed
+     * verification same mots de passe : fixed
+     * hash du mode passe d'origine : fixed
+     * reste à voir si on peut mettre des messages dans le formualaire si format du champ pas bon
      */
     public function cree($rq, $rs, $args) {
         // Récupération variable POST + nettoyage
@@ -30,21 +31,31 @@ class UtilisateurControleur {
         $prenom = filter_var($rq->getParsedBodyParam('prenom'), FILTER_SANITIZE_STRING);
         $email = filter_var($rq->getParsedBodyParam('email'), FILTER_SANITIZE_EMAIL);
         $password = filter_var($rq->getParsedBodyParam('password'), FILTER_SANITIZE_STRING);
+        $confirmation = filter_var($rq->getParsedBodyParam('confirmation'), FILTER_SANITIZE_STRING);
+
+        //verif correspondance des 2 mots de passe
+        if($password === $confirmation){
+            // Insertion dans la base
+            $membre = new Membre();
+            $membre->nom = $nom;
+            $membre->prenom = $prenom;
+            $membre->pseudo = $pseudo;
+            $membre->email = $email;
+            $membre->admin = 0;
+
+            //hash du mot de passe - que lui dans la BDD
+            $membre->hash = password_hash($password, PASSWORD_BCRYPT);
+
+            //insertion base de données
+            $membre->save();
+        }
         
-        // Insertion dans la base
-        $membre = new Membre();
-        $membre->nom = $nom;
-        $membre->prenom = $prenom;
-        $membre->pseudo = $pseudo;
-        $membre->email = $email;
-        $membre->password = $password;
-        $membre->admin = 0;
-        $membre->save();
-
-
         // Ajout d'un flash
-        $this->cont->flash->addMessage('info', "Utilisateur $nom ajouté !");
+        $this->cont->flash->addMessage('info', "Utilisateur $pseudo ajouté !");
         // Retour de la réponse avec redirection
         return $rs->withRedirect($this->cont->router->pathFor('billet_liste'));
+        
+
+        
     }
 }

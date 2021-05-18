@@ -20,10 +20,14 @@ class MembreControleur {
     //partie pour faire l'authentification - it's yours
     public function authentifie($rq, $rs, $args) {
         // Récupération variable POST + nettoyage
-        $nom = filter_var($rq->getParsedBodyParam('nom'), FILTER_SANITIZE_STRING);
-        // Insertion dans la base...
-        // ...
-        // Ajout d'un flash
+        $email = filter_var($rq->getParsedBodyParam('email'), FILTER_SANITIZE_STRING);
+        $password = filter_var($rq->getParsedBodyParam('password'), FILTER_SANITIZE_STRING);
+
+        //...vérification existence dans la base : soit connexion Ok soit pas bon : autre flash et redirection vers la vue inscription
+        //...
+        //...
+
+        // Ajout d'un flash - il faut récupérer le pseudo ou le nom associé dans la base pour l'afficher dans $nom
         $this->cont->flash->addMessage('info', "Utilisateur $nom connecté !");
         // Retour de la réponse avec redirection
         return $rs->withRedirect($this->cont->router->pathFor('billet_liste'));

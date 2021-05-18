@@ -35,12 +35,9 @@ class Vue {
      <meta charset="utf-8" />
    </head>
    <body>
-   <!-- COMMENTAIRE : ici, les liens sont cliquables, mais je n'ai pas trouvé l'adressage pour
-   afficher les vues correspondantes (UtilisateurVue::nouveau et MembreVUe::connecte)
-   -->
    <div id=log>
-        <a href="xxxxxxxxxxxx"><p class="log">Connexion</p></a>
-        <a href="xxxxxxxxxxxx"><p class="log">Inscription</p></a>
+        <a href="connexion"><p class="log">Connexion</p></a>
+        <a href="newutil"><p class="log">Inscription</p></a>
     </div>
 YOP;
         // Gestion des flashs

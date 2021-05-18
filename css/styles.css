@@ -61,3 +61,7 @@ input[type=text], input[type=password] {
 input[type=text]:focus, input[type=password]:focus {
     border: 0.2em solid lightseagreen;
 }
+
+input[type=text]:valid {
+    border: 0.2em solid rgb(105, 247, 159);
+  }
