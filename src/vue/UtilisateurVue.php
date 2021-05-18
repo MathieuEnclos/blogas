@@ -30,7 +30,7 @@ class UtilisateurVue extends Vue {
             <label for="mdp">Mot de passe</label>
             <input id="mdp" name="password" type="text" required>
             <label for="mdp">Confirmation de mot de passe</label>
-            <input id="confirm" name="confirm" type="text" required>
+            <input id="confirm" name="confirmation" type="text" required>
             <input type="submit" value="Inscription">
         </form>
 YOP;

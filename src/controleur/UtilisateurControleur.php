@@ -22,8 +22,7 @@ class UtilisateurControleur {
      * filtrage email : fixed
      * verification same mots de passe : fixed
      * hash du mode passe d'origine : fixed
-     * reste à voir si on peut mettre des messages d'erreur dans le formualaire si format du champ pas bon
-     * => c posssible en javascript, je verrais si je le fais
+     * message d'erreur : fixed
      */
     public function cree($rq, $rs, $args) {
         // Récupération variable POST + nettoyage
@@ -34,26 +33,32 @@ class UtilisateurControleur {
         $password = filter_var($rq->getParsedBodyParam('password'), FILTER_SANITIZE_STRING);
         $confirmation = filter_var($rq->getParsedBodyParam('confirmation'), FILTER_SANITIZE_STRING);
 
-        //verif correspondance des 2 mots de passe
-        if($password === $confirmation){
-            // Insertion dans la base
-            $membre = new Membre();
-            $membre->nom = $nom;
-            $membre->prenom = $prenom;
-            $membre->pseudo = $pseudo;
+        //Insertion dans la base
+        $membre = new Membre();
+        $membre->nom = $nom;
+        $membre->prenom = $prenom;
+        $membre->pseudo = $pseudo;
+        $membre->admin = 0;
+
+        // Vérification e-mail
+        if(!(filter_var($email, FILTER_VALIDATE_EMAIL))){
+            $this->cont->flash->addMessage('info', "Echec : email incorrect ");
+            return $rs->withRedirect($this->cont->router->pathFor('util_nouveau'));
+        } else {
             $membre->email = $email;
-            $membre->admin = 0;
-
-            //hash du mot de passe - que lui dans la BDD
-            $membre->hash = password_hash($password, PASSWORD_BCRYPT);
-
-            //insertion base de données
-            $membre->save();
         }
-        
-        // Ajout d'un flash
+
+        // Vérification mot de passe
+        if($password !== $confirmation){
+            $this->cont->flash->addMessage('info', "Echec : mots de passe différents ");
+            return $rs->withRedirect($this->cont->router->pathFor('util_nouveau'));
+        } else {
+            $membre->hash = password_hash($password, PASSWORD_BCRYPT);
+        }
+    
+        //Insertion effective et confirmation
+        $membre->save();
         $this->cont->flash->addMessage('info', "Utilisateur $pseudo ajouté !");
-        // Retour de la réponse avec redirection
         return $rs->withRedirect($this->cont->router->pathFor('billet_liste')); 
     }
 }
