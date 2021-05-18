@@ -20,15 +20,15 @@ class UtilisateurVue extends Vue {
         <h1>Formulaire d'inscription</h1>
         <form method="post" action="{$this->cont['router']->pathFor('util_cree')}">
             <label for="pseudo">Pseudo</label>
-            <input id="pseudo" type="text" value="DarkMetal92">
+            <input id="pseudo" type="text" name="pseudo" placeholder="<DarkMetal92>">
             <label for="nom">Nom</label>
-            <input id="nom" type="text" value="Pivert">
+            <input id="nom" type="text" name="nom" placeholder="<Pivert>">
             <label for="prenom">Prénom</label>
-            <input id="prenom" type="text" value="Augustin">
+            <input id="prenom" type="text" name="prenom" placeholder="<Augustin>">
             <label for="email">E-mail</label>
-            <input id="email" type="text" value="augustin.pivert@domaine.fr">
+            <input id="email" type="text" name="email" placeholder="<augustin.pivert@domaine.fr>">
             <label for="mdp">Mot de passe</label>
-            <input id="mdp" type="text" value="">
+            <input id="mdp" name="password" type="text">
             <input type="submit" value="Inscription">
         </form>
 YOP;

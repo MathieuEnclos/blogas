@@ -18,19 +18,17 @@ class UtilisateurControleur {
     }
     
     /**
-     * j'ai un probleme de récupération des données du formulaire -
-     * le reste fonctionne : ajout d'un membre OK dans la base
-     * le problème c'est que les données du membre ne passe pas
-     * je fixerais cela plus tard
-     * je comprends pas bien le filtrage
-     * il faut aussi passer l'entrée du mot de passe en mode "caché : ******"
+     * pb récupération des données du formulaire : fixed
+     * reste à controler le mot de passe en double saisie
+     * reste à sécuriser le mot de passe, car je crois qu'il faut une manip en plus
+     * reste à filtrer correctement l'email si le format n'est pas bon
      */
     public function cree($rq, $rs, $args) {
         // Récupération variable POST + nettoyage
         $nom = filter_var($rq->getParsedBodyParam('nom'), FILTER_SANITIZE_STRING);
         $pseudo = filter_var($rq->getParsedBodyParam('pseudo'), FILTER_SANITIZE_STRING);
         $prenom = filter_var($rq->getParsedBodyParam('prenom'), FILTER_SANITIZE_STRING);
-        $email = filter_var($rq->getParsedBodyParam('email'), FILTER_SANITIZE_STRING);
+        $email = filter_var($rq->getParsedBodyParam('email'), FILTER_SANITIZE_EMAIL);
         $password = filter_var($rq->getParsedBodyParam('password'), FILTER_SANITIZE_STRING);
         
         // Insertion dans la base
