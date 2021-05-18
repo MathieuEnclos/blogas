@@ -52,8 +52,7 @@ YOP;
 
                 $res .= "</ul></div>";
             }
-        }
-        
+        } 
         $res .= <<<YOP
      $cont
    </body>

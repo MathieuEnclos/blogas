@@ -11,6 +11,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 use \blogapp\conf\ConnectionFactory;
 use \blogapp\controleur\UtilisateurControleur;
+use \blogapp\controleur\SaisieControleur;
 
 /**
  * poru accéder à la vue inscription : tapez /newutil dans url
@@ -45,6 +46,7 @@ $app->get('/billets',
           '\blogapp\controleur\BilletControleur:liste')
     ->setName('billet_liste');
 
+
 // routes d'inscription
 $app->get('/newutil',
           '\blogapp\controleur\UtilisateurControleur:nouveau')
@@ -53,6 +55,17 @@ $app->get('/newutil',
 $app->post('/createutil',
           '\blogapp\controleur\UtilisateurControleur:cree')
     ->setName('util_cree');
+
+
+// routes nouveau billet
+$app->get('/newbill',
+        '\blogapp\controleur\SaisieControleur:nouveau')
+    ->setName('bill_nouveau');
+
+$app->post('/createbill',
+    '\blogapp\controleur\SaisieControleur:saisie')
+->setName('bill_cree');
+
 
 //routes de connexion
 $app->get('/connexion',
