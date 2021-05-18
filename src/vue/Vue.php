@@ -20,12 +20,28 @@ class Vue {
         $url = str_replace("/index.php", "", $url);
         return $url;
     }
-    
+
     public function userPage($cont) {
         $flash = $this->cont->flash->getMessages();
         // Décommenter la ligne suivante pour voir la
         // structure des flashs (pour info)
         // var_dump($flash);
+
+        // Gestion des boutons
+        if (isset($_COOKIE["membre"]))
+        {
+          $boutons = <<< YOP
+          <a href="deconnexion"><p class="log">Deconnexion</p></a>
+          YOP;
+        }
+        else
+        {
+          $boutons = <<< YOP
+          <a href="connexion"><p class="log">Connexion</p></a>
+          <a href="newutil"><p class="log">Inscription</p></a>
+          YOP;
+        }
+
         $res = <<< YOP
  <!doctype html>
  <html>
@@ -36,8 +52,7 @@ class Vue {
    </head>
    <body>
    <div id=log>
-        <a href="connexion"><p class="log">Connexion</p></a>
-        <a href="newutil"><p class="log">Inscription</p></a>
+          $boutons
     </div>
 YOP;
         // Gestion des flashs

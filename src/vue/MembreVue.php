@@ -5,7 +5,7 @@ use blogapp\vue\Vue;
 
 class MembreVue extends Vue {
     const NOUVEAU_VUE = 1;
-    
+
     public function render() {
         switch($this->selecteur) {
         case self::NOUVEAU_VUE:
@@ -18,7 +18,7 @@ class MembreVue extends Vue {
     public function connecte() {
         return <<<YOP
         <h1>Connexion</h1>
-        <form method="post" action="{$this->cont['router']->pathFor('memb_co')}">
+        <form method="post" action="{$this->cont['router']->pathFor('memb_auth')}">
             <label for="email">E-mail</label>
             <input id="email" name="email" type="text">
             <label for="mdp">Mot de passe</label>

@@ -71,13 +71,9 @@ $app->post('/createbill',
 $app->get('/connexion',
             '\blogapp\controleur\MembreControleur:connecte')
     ->setName('memb_co');
-    
+
 $app->post('/authentification',
-            '\blogapp\controleur\UtilisateurControleur:authentifie')
+            '\blogapp\controleur\MembreControleur:authentifie')
     ->setName('memb_auth');
 
 $app->run();
-
-
-
-
