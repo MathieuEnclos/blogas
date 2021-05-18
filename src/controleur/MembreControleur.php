@@ -19,6 +19,15 @@ class MembreControleur {
         return $rs;
     }
 
+    public function deconnecte($rq, $rs, $args){
+      if (isset($_COOKIE["membre"]))
+      {
+        setcookie("membre");
+      }
+      $this->cont->flash->addMessage('info', "Vous êtes déeconnecté(e)");
+      return $rs->withRedirect($this->cont->router->pathFor('billet_liste'));
+    }
+
     //partie pour faire l'authentification - it's yours
     public function authentifie($rq, $rs, $args) {
         // Récupération variable POST + nettoyage
@@ -31,7 +40,8 @@ class MembreControleur {
         $membre = Membre::where('email','=',$email)->first();
         if ($membre === null)
         {
-          $message = "email incorrect";
+          $this->cont->flash->addMessage('error', "Erreur : email incorrect");
+          return $rs->withRedirect($this->cont->router->pathFor('memb_co'));
         }
         else
         {
@@ -39,15 +49,15 @@ class MembreControleur {
           if (password_verify($password, $hash)) {
             setcookie("membre","m",time()+7*24*3600);
             $pseudo=$membre->pseudo;
-            $message = "Utilisateur $pseudo connecté !";
           }
           else{
-            $message = "mot de passe incorrect";
+            $this->cont->flash->addMessage('error', "Erreur : mot de passe incorrect");
+            return $rs->withRedirect($this->cont->router->pathFor('memb_co'));
           }
         }
 
         // Ajout d'un flash - il faut récupérer le pseudo ou le nom associé dans la base pour l'afficher dans $nom
-          $this->cont->flash->addMessage('info', $message);
+          $this->cont->flash->addMessage('info', "Utilisateur $pseudo connecté !");
         // Retour de la réponse avec redirection
         return $rs->withRedirect($this->cont->router->pathFor('billet_liste'));
     }

@@ -76,4 +76,8 @@ $app->post('/authentification',
             '\blogapp\controleur\MembreControleur:authentifie')
     ->setName('memb_auth');
 
+$app->get('/deconnexion',
+            '\blogapp\controleur\MembreControleur:deconnecte')
+    ->setName('memb_do');
+
 $app->run();
