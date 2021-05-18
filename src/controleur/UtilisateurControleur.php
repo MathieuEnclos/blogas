@@ -22,7 +22,8 @@ class UtilisateurControleur {
      * filtrage email : fixed
      * verification same mots de passe : fixed
      * hash du mode passe d'origine : fixed
-     * reste à voir si on peut mettre des messages dans le formualaire si format du champ pas bon
+     * reste à voir si on peut mettre des messages d'erreur dans le formualaire si format du champ pas bon
+     * => c posssible en javascript, je verrais si je le fais
      */
     public function cree($rq, $rs, $args) {
         // Récupération variable POST + nettoyage
@@ -53,9 +54,6 @@ class UtilisateurControleur {
         // Ajout d'un flash
         $this->cont->flash->addMessage('info', "Utilisateur $pseudo ajouté !");
         // Retour de la réponse avec redirection
-        return $rs->withRedirect($this->cont->router->pathFor('billet_liste'));
-        
-
-        
+        return $rs->withRedirect($this->cont->router->pathFor('billet_liste')); 
     }
 }
