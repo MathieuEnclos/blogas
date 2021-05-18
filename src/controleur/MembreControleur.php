@@ -31,7 +31,7 @@ class MembreControleur {
         $membre = Membre::where('email','=',$email)->first();
         if ($membre === null)
         {
-          $pseudo = "(email incorrect)";
+          $message = "email incorrect";
         }
         else
         {
@@ -39,14 +39,15 @@ class MembreControleur {
           if (password_verify($password, $hash)) {
             setcookie("membre","m",time()+7*24*3600);
             $pseudo=$membre->pseudo;
+            $message = "Utilisateur $pseudo connecté !";
           }
           else{
-            $pseudo = "(password incorrect )";
+            $message = "mot de passe incorrect";
           }
         }
 
         // Ajout d'un flash - il faut récupérer le pseudo ou le nom associé dans la base pour l'afficher dans $nom
-        $this->cont->flash->addMessage('info', "Utilisateur $pseudo connecté !");
+          $this->cont->flash->addMessage('info', $message);
         // Retour de la réponse avec redirection
         return $rs->withRedirect($this->cont->router->pathFor('billet_liste'));
     }
