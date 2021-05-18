@@ -1,11 +1,13 @@
 <?php
 
 namespace blogapp\controleur;
+
+use blogapp\modele\Membre;
 use blogapp\vue\MembreVue;
 
 class MembreControleur {
     private $cont;
-    
+
     public function __construct($conteneur) {
         $this->cont = $conteneur;
     }
@@ -26,6 +28,22 @@ class MembreControleur {
         //...vérification existence dans la base : soit connexion Ok soit pas bon : autre flash et redirection vers la vue inscription
         //...
         //...
+        $membre = Membre::where('email','=',$email)->first();
+        if ($membre === null)
+        {
+          $pseudo = "(email incorrect)";
+        }
+        else
+        {
+          $hash = $membre->hash;
+          if (password_verify($password, $hash)) {
+            setcookie("membre","m",time()+7*24*3600);
+            $pseudo=$membre->pseudo;
+          }
+          else{
+            $pseudo = "(password incorrect )";
+          }
+        }
 
         // Ajout d'un flash - il faut récupérer le pseudo ou le nom associé dans la base pour l'afficher dans $nom
         $this->cont->flash->addMessage('info', "Utilisateur $pseudo connecté !");
