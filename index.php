@@ -42,7 +42,7 @@ $app->get('/billet/{id}',
           '\blogapp\controleur\BilletControleur:affiche')
     ->setName('billet_aff');
 
-$app->get('/billets',
+$app->get('/billets/{numPage}',
           '\blogapp\controleur\BilletControleur:liste')
     ->setName('billet_liste');
 

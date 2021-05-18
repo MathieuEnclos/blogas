@@ -6,7 +6,7 @@ use blogapp\modele\Membre;
 
 class UtilisateurControleur {
     private $cont;
-    
+
     public function __construct($conteneur) {
         $this->cont = $conteneur;
     }
@@ -16,7 +16,7 @@ class UtilisateurControleur {
         $rs->getBody()->write($bl->render());
         return $rs;
     }
-    
+
     /**
      * récupération des données du formulaire : fixed
      * filtrage email : fixed
@@ -55,10 +55,10 @@ class UtilisateurControleur {
         } else {
             $membre->hash = password_hash($password, PASSWORD_BCRYPT);
         }
-    
+
         //Insertion effective et confirmation
         $membre->save();
         $this->cont->flash->addMessage('info', "Utilisateur $pseudo ajouté !");
-        return $rs->withRedirect($this->cont->router->pathFor('billet_liste')); 
+        return $rs->withRedirect($this->cont->router->pathFor('billet_liste',['numPage' =>1])); 
     }
 }

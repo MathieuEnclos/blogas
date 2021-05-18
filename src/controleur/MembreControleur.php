@@ -24,8 +24,8 @@ class MembreControleur {
       {
         setcookie("membre");
       }
-      $this->cont->flash->addMessage('info', "Vous êtes déeconnecté(e)");
-      return $rs->withRedirect($this->cont->router->pathFor('billet_liste'));
+      $this->cont->flash->addMessage('info', "Vous êtes déconnecté(e)");
+      return $rs->withRedirect($this->cont->router->pathFor('billet_liste',['numPage' =>1]));
     }
 
     //partie pour faire l'authentification - it's yours
@@ -59,6 +59,6 @@ class MembreControleur {
         // Ajout d'un flash - il faut récupérer le pseudo ou le nom associé dans la base pour l'afficher dans $nom
           $this->cont->flash->addMessage('info', "Utilisateur $pseudo connecté !");
         // Retour de la réponse avec redirection
-        return $rs->withRedirect($this->cont->router->pathFor('billet_liste'));
+        return $rs->withRedirect($this->cont->router->pathFor('billet_liste',['numPage' =>1]));
     }
 }
