@@ -19,11 +19,21 @@ class SaisieVue extends Vue {
         return <<<YOP
         <h1>Nouveau billet</h1>
         <form method="post" action="{$this->cont['router']->pathFor('bill_cree')}">
-        <label for="titre">Titre du billet</label>
+        <label class="space" for="titre">Titre du billet :</label>
         <input id="titre" type="text" name="titre" required>
-        <label for="contenu">Entrez votre texte :</label>
-        <textarea id="contenu" name="body" required> </textarea>
-        <input id="submit" type="submit" value="Soumettre">
+        <label class="space" for="contenu">Entrez votre texte :</label>
+        <textarea class="space" cols="100" rows="50" id="contenu" name="body" maxlength="3000" 
+        required> </textarea>
+        <label class="space" for="contenu">Sélectionnez le thème de votre article : </label>
+        <select class="space" name="thematique" required>
+        <option>Mangas</option>
+        <option>Cinéma</option>
+        <option>Musique</option>
+        <option>Jeux Videos</option>
+        <option>Voyages</option>
+        </select>
+        <input class="space" type="submit" value="Soumettre">
+        </div>
         </form>
 YOP;
     }
