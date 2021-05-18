@@ -7,7 +7,7 @@ use blogapp\vue\BilletVue;
 
 class BilletControleur {
     private $cont;
-    
+
     public function __construct($conteneur) {
         $this->cont = $conteneur;
     }
@@ -22,7 +22,7 @@ class BilletControleur {
     }
 
     public function liste($rq, $rs, $args) {
-        $billets = Billet::get();
+        $billets = Billet::orderBy('date', 'DESC')->get();
 
         $bl = new BilletVue($this->cont, $billets, BilletVue::LISTE_VUE);
         $rs->getBody()->write($bl->render());

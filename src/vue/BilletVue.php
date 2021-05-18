@@ -6,7 +6,7 @@ use blogapp\vue\Vue;
 class BilletVue extends Vue {
     const BILLET_VUE = 1;
     const LISTE_VUE = 2;
-    
+
     public function render() {
         switch($this->selecteur) {
         case self::BILLET_VUE:
@@ -40,7 +40,7 @@ YOP;
 
     public function liste() {
         $res = "";
-        
+
         if ($this->source != null) {
             $res = <<<YOP
     <h1>Affichage de la liste des billets</h1>
@@ -49,8 +49,11 @@ YOP;
 
             foreach ($this->source as $billet) {
                 $url = $this->cont->router->pathFor('billet_aff', ['id' => $billet->id]);
+                $text = substr($billet->body,0,30);
+                $cat =$billet->categorie;
+                $bil = "$billet->titre \   $billet->date \ $cat->titre \  $text";
                 $res .= <<<YOP
-      <li><a href="$url">{$billet->titre}</a></li>
+      <li><a href="$url">$bil</a></li>
 YOP;
             }
             $res .= "</ul>";
