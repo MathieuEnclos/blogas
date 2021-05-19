@@ -51,12 +51,16 @@ YOP;
                 $url = $this->cont->router->pathFor('billet_aff', ['id' => $billet->id]);
                 $text = substr($billet->body,0,30);
                 $cat =$billet->categorie;
-                $bil = "$billet->titre \   $billet->date \ $cat->titre \  $text";
+                $bil = "$billet->titre \  $billet->date \ $cat->titre \  $text";
                 $res .= <<<YOP
       <li><a href="$url">$bil</a></li>
 YOP;
             }
             $res .= "</ul>";
+            $res .=<<<YOP
+            <a href="{$this->baseURL()}/billets/"><p class="log">Page précédente</p></a>
+            <a href="{$this->baseURL()}/billets/"><p class="log">Page suivante</p></a>
+YOP;
         }
         else
             $res = "<h1>Erreur : la liste de billets n'existe pas !</h1>";
