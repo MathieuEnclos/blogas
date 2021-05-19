@@ -1,6 +1,7 @@
 <?php
 
 namespace blogapp\controleur;
+use blogapp\modele\Categorie;
 use blogapp\vue\SaisieVue;
 use blogapp\modele\Billet;
 
@@ -24,11 +25,13 @@ class SaisieControleur {
         $thematique = filter_var($rq->getParsedBodyParam('thematique'), FILTER_SANITIZE_STRING);
         $date = date("Y-m-d");
 
-        //tableau associatif catégorie-thematique
-        $tab = array(1 => 'Mangas', 2 => 'Cinema', 3 => 'Musique', 4 => 'Jeux Videos');
-        foreach($tab as $key => $value){
-            if($thematique === $value){
-                $cat_id = $key;
+        $this->cont->flash->addMessage('info', "$thematique");
+
+        //usage des categories de la bdd
+        $categories = Categorie::get();
+        foreach($categories as $categorie){
+            if($categorie->titre === $thematique){
+                $cat_id = $categorie->id;
             }
         }
 
