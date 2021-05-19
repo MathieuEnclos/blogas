@@ -31,7 +31,7 @@ class Vue {
         if (isset($_COOKIE["membre"]))
         {
           $boutons = <<< YOP
-          <a href="{$this->baseURL()}/deconnexion"><p class="log">Deconnexion</p></a>
+          <a href="deconnexion"><p class="log">Deconnexion</p></a>
           <a href="deconnexion"><p class="log">Deconnexion</p></a>
           YOP;
         }
