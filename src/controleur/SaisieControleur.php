@@ -25,8 +25,6 @@ class SaisieControleur {
         $thematique = filter_var($rq->getParsedBodyParam('thematique'), FILTER_SANITIZE_STRING);
         $date = date("Y-m-d");
 
-        $this->cont->flash->addMessage('info', "$thematique");
-
         //usage des categories de la bdd
         $categories = Categorie::get();
         foreach($categories as $categorie){
@@ -35,21 +33,18 @@ class SaisieControleur {
             }
         }
 
-        //Insertion dans la base
-        if($cat_id !== null){
-            $billet = new Billet();
-            $billet->titre = $titre;
-            $billet->body = $body;
-            $billet->date = $date;
-            $billet->save();
-        }else{
-            $this->cont->flash->addMessage('info', "Catégorie inexistante");
-            return $rs->withRedirect($this->cont->router->pathFor('bill_nouveau')); 
-        }
-
+        //Insertion dans la base{
+        $billet = new Billet();
+        $billet->titre = $titre;
+        $billet->body = $body;
+        $billet->date = $date;
+        $billet->cat_id = $cat_id;
+        $billet->save();
+        
         $this->cont->flash->addMessage('info', "Billet posté :)");
-        return $rs->withRedirect($this->cont->router->pathFor('billet_liste'));
+        return $rs->withRedirect($this->cont->router->pathFor('billet_liste',['numPage' =>1]));
     }
 }
         
         
+ 

@@ -25,13 +25,14 @@ class SaisieVue extends Vue {
         <textarea class="space" cols="100" rows="50" id="contenu" name="body" maxlength="3000" 
         required> </textarea>
         <label class="space" for="contenu">Sélectionnez le thème de votre article : </label>
-        <select class="space" name="thematique" required>
-        <option value="manga">Mangas</option>
-        <option value="cinema">Cinéma</option>
-        <option value="music">Musique</option>
-        <option value="jv">Jeux Videos</option>
-        <option>Voyages</option>
-        </select>
+        <label for="manga">Manga</label>
+        <input id="manga" type="radio" name="thematique" value="manga">
+        <label for="cinema">Cinéma</label>
+        <input type="radio" name="thematique" value="cinema">
+        <label for="music">Musique</label> 
+        <input id="music" type="radio" name="thematique" value="music">
+        <label for="jv">Jeux Videos</label>
+        <input id="jv" type="radio" name="thematique" value="jv">
         <input class="space" type="submit" value="Soumettre">
         </div>
         </form>

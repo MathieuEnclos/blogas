@@ -32,7 +32,7 @@ class Vue {
         {
           $boutons = <<< YOP
           <a href="{$this->baseURL()}/deconnexion"><p class="log">Deconnexion</p></a>
-          <a href="{$this->baseURL()}/deconnexion"><p class="log">Deconnexion</p></a>
+          <a href="{$this->baseURL()}/newbill"><p class="log">Saisir un billet</p></a>
           YOP;
         }
         else
