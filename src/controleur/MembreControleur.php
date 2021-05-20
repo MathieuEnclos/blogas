@@ -44,8 +44,8 @@ class MembreControleur {
         {
           $hash = $membre->hash;
           if (password_verify($password, $hash)) {
-            setcookie("membre","m",time()+7*24*3600);
             $pseudo=$membre->pseudo;
+            setcookie("membre",$pseudo,time()+7*24*3600);
           }
           else{
             $this->cont->flash->addMessage('error', "Erreur : mot de passe incorrect");
