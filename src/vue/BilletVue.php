@@ -9,7 +9,7 @@ class BilletVue extends Vue {
 
     protected $numPage;
 
-    public function __construct($cont, $src, $sel,$np) {
+    public function __construct($cont, $src, $sel, $np) {
         $this->cont = $cont;
         $this->source = $src;
         $this->selecteur = $sel;

@@ -47,7 +47,7 @@ $app->get('/billets/{numPage}',
 
 //route des commentaires
 $app->post('/create_com',
-    '\blogapp\controleur\BilletControleur:ajout_com')
+    '\blogapp\controleur\CommentaireControleur:ajout_com')
 ->setName('com_ajoute');
 
 
