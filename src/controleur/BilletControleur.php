@@ -17,7 +17,8 @@ class BilletControleur {
     public function affiche($rq, $rs, $args) {
         $id = $args['id'];
         $billet = Billet::where('id', '=', $id)->first();
-        $bl = new BilletVue($this->cont, $billet, BilletVue::BILLET_VUE);
+
+        $bl = new BilletVue($this->cont, $billet, BilletVue::BILLET_VUE,"0");
         $rs->getBody()->write($bl->render());
         return $rs;
     }
@@ -26,7 +27,7 @@ class BilletControleur {
         $numPage = $args['numPage']-1;
         $billets = Billet::orderBy('date', 'DESC')->skip(20*$numPage)->take(20)->get();
 
-        $bl = new BilletVue($this->cont, $billets, BilletVue::LISTE_VUE);
+        $bl = new BilletVue($this->cont, $billets, BilletVue::LISTE_VUE,($numPage+1));
         $rs->getBody()->write($bl->render());
         return $rs;
     }

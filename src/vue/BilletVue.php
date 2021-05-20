@@ -8,6 +8,15 @@ class BilletVue extends Vue {
     const BILLET_VUE = 1;
     const LISTE_VUE = 2;
 
+    protected $numPage;
+
+    public function __construct($cont, $src, $sel,$np) {
+        $this->cont = $cont;
+        $this->source = $src;
+        $this->selecteur = $sel;
+        $this->numPage = $np;
+    }
+
     public function render() {
         switch($this->selecteur) {
         case self::BILLET_VUE:
@@ -66,12 +75,16 @@ YOP;
 YOP;
             }
             $res .= "</ul>";
-            $res .=<<<YOP
-            <div id="center">
-            <a href="{$this->baseURL()}/billets/"><p class="nav">Page précédente</p></a>
-            <a href="{$this->baseURL()}/billets/"><p class="nav">Page suivante</p></a>
-            </div>
+            $pageP = "{$this->baseURL()}/billets/".($this->numPage -1);
+            $pageS = "{$this->baseURL()}/billets/".($this->numPage +1);
+            $boutons = <<<YOP
+            <a href=$pageS><p class="log">Page suivante</p></a>
 YOP;
+            if ($this->numPage>1)
+            {
+              $boutons .= "<a href=$pageP><p class=\"log\">Page précédente</p></a>";
+            }
+            $res.=$boutons;
         }
         else
             $res = "<h1>Erreur : la liste de billets n'existe pas !</h1>";
