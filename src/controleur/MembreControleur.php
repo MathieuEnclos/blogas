@@ -34,9 +34,6 @@ class MembreControleur {
         $email = filter_var($rq->getParsedBodyParam('email'), FILTER_SANITIZE_STRING);
         $password = filter_var($rq->getParsedBodyParam('password'), FILTER_SANITIZE_STRING);
 
-        //...vérification existence dans la base : soit connexion Ok soit pas bon : autre flash et redirection vers la vue inscription
-        //...
-        //...
         $membre = Membre::where('email','=',$email)->first();
         if ($membre === null)
         {

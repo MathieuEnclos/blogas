@@ -37,7 +37,6 @@ $configuration = [
 $app = new \Slim\App($configuration);
 
 // Définition des routes
-
 $app->get('/billet/{id}',
           '\blogapp\controleur\BilletControleur:affiche')
     ->setName('billet_aff');
@@ -45,6 +44,12 @@ $app->get('/billet/{id}',
 $app->get('/billets/{numPage}',
           '\blogapp\controleur\BilletControleur:liste')
     ->setName('billet_liste');
+
+//route des commentaires
+$app->post('/create_com',
+    '\blogapp\controleur\BilletControleur:ajout_com')
+->setName('com_ajoute');
+
 
 // routes d'inscription
 $app->get('/newutil',
@@ -65,14 +70,6 @@ $app->post('/createbill',
     '\blogapp\controleur\SaisieControleur:saisie')
 ->setName('bill_cree');
 
-//route des commentaires
-$app->get('/new_com',
-        '\blogapp\controleur\BilletControleur:nouveau')
-    ->setName('com_nouveau');
-
-$app->post('/create_com',
-    '\blogapp\controleur\BilletControleur:ajout_com')
-->setName('com_ajoute');
 
 //routes de connexion
 $app->get('/connexion',

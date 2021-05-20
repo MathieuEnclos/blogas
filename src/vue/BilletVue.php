@@ -2,7 +2,6 @@
 
 namespace blogapp\vue;
 use blogapp\vue\Vue;
-use\blogapp\vue\CommentaireVue;
 
 class BilletVue extends Vue {
     const BILLET_VUE = 1;
@@ -43,7 +42,7 @@ class BilletVue extends Vue {
 YOP;
         if(isset($_COOKIE["membre"])){
             $res .= <<<YOP
-            <form method="post" action="action="{$this->cont['router']->pathFor('com_ajoute')}>
+            <form method="post" action="{$this->cont['router']->pathFor('com_ajoute')}>
             <label class="space" for="comment">Saisissez votre commentaire :</label>
             <textarea id="comment" class="space" cols="100" rows="5" name="comment" maxlength="400"></textarea>
             <input type="submit" class="space" value="Valider">
