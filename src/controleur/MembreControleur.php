@@ -25,7 +25,7 @@ class MembreControleur {
         setcookie("membre");
       }
       $this->cont->flash->addMessage('info', "Vous êtes déconnecté(e)");
-      return $rs->withRedirect($this->cont->router->pathFor('billet_liste',['numPage' =>1]));
+      return $rs->withRedirect($this->cont->router->pathFor('billet_liste',['numPage' => 1]));
     }
 
     //partie pour faire l'authentification - it's yours

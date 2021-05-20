@@ -17,13 +17,6 @@ class UtilisateurControleur {
         return $rs;
     }
 
-    /**
-     * récupération des données du formulaire : fixed
-     * filtrage email : fixed
-     * verification same mots de passe : fixed
-     * hash du mode passe d'origine : fixed
-     * message d'erreur : fixed
-     */
     public function cree($rq, $rs, $args) {
         // Récupération variable POST + nettoyage
         $nom = filter_var($rq->getParsedBodyParam('nom'), FILTER_SANITIZE_STRING);

@@ -46,7 +46,6 @@ $app->get('/billets/{numPage}',
           '\blogapp\controleur\BilletControleur:liste')
     ->setName('billet_liste');
 
-
 // routes d'inscription
 $app->get('/newutil',
           '\blogapp\controleur\UtilisateurControleur:nouveau')
@@ -66,6 +65,14 @@ $app->post('/createbill',
     '\blogapp\controleur\SaisieControleur:saisie')
 ->setName('bill_cree');
 
+//route des commentaires
+$app->get('/new_com',
+        '\blogapp\controleur\BilletControleur:nouveau')
+    ->setName('com_nouveau');
+
+$app->post('/create_com',
+    '\blogapp\controleur\BilletControleur:ajout_com')
+->setName('com_ajoute');
 
 //routes de connexion
 $app->get('/connexion',

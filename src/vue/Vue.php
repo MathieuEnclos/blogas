@@ -21,6 +21,14 @@ class Vue {
         return $url;
     }
 
+    public function baseURLPage(){
+      $url = $this->cont['environment']['SCRIPT_NAME']['number'];
+      $url = str_replace("/index.php", "", $url);
+      return $url;
+    }
+
+    
+
     public function userPage($cont) {
         $flash = $this->cont->flash->getMessages();
         // Décommenter la ligne suivante pour voir la
