@@ -77,11 +77,12 @@ YOP;
             $pageP = "{$this->baseURL()}/billets/".($this->numPage -1);
             $pageS = "{$this->baseURL()}/billets/".($this->numPage +1);
             $boutons = <<<YOP
-            <a href=$pageS><p class="log">Page suivante</p></a>
+            <div id="center">
+            <a href=$pageS><p class="nav">Page suivante</p></a>
 YOP;
             if ($this->numPage>1)
             {
-              $boutons .= "<a href=$pageP><p class=\"log\">Page précédente</p></a>";
+              $boutons .= "<a href=$pageP><p class=\"nav\">Page précédente</p></a></div>";
             }
             $res.=$boutons;
         }

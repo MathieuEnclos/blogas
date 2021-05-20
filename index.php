@@ -40,6 +40,7 @@ $app = new \Slim\App($configuration);
 $app->get('/',function ($rq,$rs,$args){
   return $rs->withRedirect($this['router']->pathFor('billet_liste',['numPage' =>"1"]));})
   ->setName('accueil');
+
 $app->get('/billet/{id}',
           '\blogapp\controleur\BilletControleur:affiche')
     ->setName('billet_aff');
@@ -49,18 +50,11 @@ $app->get('/billets/{numPage}',
     ->setName('billet_liste');
 
 //route des commentaires
-$app->post('/create_com',
-    '\blogapp\controleur\CommentaireControleur:ajout_com')
-->setName('com_ajoute');
 
 
 // routes d'inscription
-$app->get('/newutil',
-          '\blogapp\controleur\UtilisateurControleur:nouveau')
-    ->setName('util_nouveau');
-
 $app->post('/createutil',
-          '\blogapp\controleur\UtilisateurControleur:cree')
+          '\blogapp\controleur\UtilisateurControleur:ajoute')
     ->setName('util_cree');
 
 
