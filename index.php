@@ -50,6 +50,13 @@ $app->get('/billets/{numPage}',
     ->setName('billet_liste');
 
 //route des commentaires
+$app->get('/comment',
+          '\blogapp\controleur\BilletControleur:affiche')
+    ->setName('nouveau_com');
+
+$app->post('/commented',
+    '\blogapp\controleur\BilletControleur:ajoute')
+->setName('com_ajoute');
 
 
 // routes d'inscription
