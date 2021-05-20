@@ -37,6 +37,9 @@ $configuration = [
 $app = new \Slim\App($configuration);
 
 // Définition des routes
+$app->get('/',function ($rq,$rs,$args){
+  return $rs->withRedirect($this['router']->pathFor('billet_liste',['numPage' =>"1"]));})
+  ->setName('accueil');
 $app->get('/billet/{id}',
           '\blogapp\controleur\BilletControleur:affiche')
     ->setName('billet_aff');
