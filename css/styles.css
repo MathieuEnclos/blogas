@@ -106,3 +106,7 @@ a.lien{
     text-decoration:none;
     color:darkblue;
 }
+
+.comment{
+    display:inline-block
+}

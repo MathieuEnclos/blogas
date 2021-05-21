@@ -12,7 +12,7 @@ class Billet extends \Illuminate\Database\Eloquent\Model {
         return $this->belongsTo('\blogapp\modele\Categorie', 'cat_id');
     }
     
-    public function commentaire() {
+    public function commentaires() {
         return $this->hasMany('\blogapp\modele\Commentaire', 'billet');
     }
 }
