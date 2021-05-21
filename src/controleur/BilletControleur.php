@@ -17,7 +17,7 @@ class BilletControleur {
     public function affiche($rq, $rs, $args) {
         $id = $args['id'];
         $billet = Billet::where('id', '=', $id)->first();
-        $bl = new BilletVue($this->cont, $billet, BilletVue::BILLET_VUE, "0");
+        $bl = new BilletVue($this->cont, $billet, BilletVue::BILLET_VUE, $billet->id);
         $rs->getBody()->write($bl->render());
         return $rs;
     }

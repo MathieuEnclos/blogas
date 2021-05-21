@@ -50,7 +50,7 @@ $app->get('/comment',
           '\blogapp\controleur\BilletControleur:affiche')
     ->setName('nouveau_com');
 
-$app->post('/commented',
+$app->post('/commented/{id}',
     '\blogapp\controleur\BilletControleur:ajoute')
 ->setName('com_ajoute');
 

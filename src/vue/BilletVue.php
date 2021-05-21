@@ -41,18 +41,20 @@ class BilletVue extends Vue {
             <li>Contenu : {$this->source->body}</li>
             </ul>
 YOP;
-            
-            $commentaires = $this->source->commentaires->get();
-            if(isset($commentaires)){
-                foreach($commentaires as $commentaire){
-                    $res .= <<<YOP
-                    <p>$commentaire->content</p>
-                    <div class="comment">
-                    <p>$commentaire->auteur</p>
-                    <p>$commentaire->date</p>
-                    </div>          
-YOP;               }
-            }
+            if(isset($_COOKIE["membre"])){
+                $urlCom = $this->cont['router']->pathFor('com_ajoute',['id' => $this->numPage]);
+                $res .= <<<YOP
+                <form method="post" action="$urlCom">
+                <label class="space" for="comment">Saisissez votre commentaire :</label>
+                <textarea id="comment" class="space" cols="100" rows="5" name="comment" maxlength="400"></textarea>
+                <input type="submit" class="space" value="Valider">
+YOP;
+
+}
+            $commentaires
+        }
+        else
+            $res = "<h1>Erreur : le billet n'existe pas !</h1>";
 
             if(isset($_COOKIE["membre"])){
                 $res .= <<<YOP
