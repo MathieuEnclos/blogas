@@ -61,7 +61,7 @@ $app->get('/newutil',
 ->setName('util_nouveau');
 
 $app->post('/createutil',
-          '\blogapp\controleur\UtilisateurControleur:ajoute')
+          '\blogapp\controleur\UtilisateurControleur:cree')
     ->setName('util_cree');
 
 // routes nouveau billet

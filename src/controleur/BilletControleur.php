@@ -40,6 +40,7 @@ class BilletControleur {
         $comment->content = $content;
         $comment->billet = $billet;
         $comment->auteur = $auteur;
+        $comment->date = date("Y-m-d");
         $comment->save();
 
         $this->cont->flash->addMessage('info', "Billet posté :)");

@@ -108,5 +108,11 @@ a.lien{
 }
 
 .comment{
-    display:inline-block
+    display:block;
+}
+
+p.c_aff{
+    background-color :cornsilk;
+    color:darkblue;
+    padding : 3em;
 }

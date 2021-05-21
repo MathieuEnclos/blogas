@@ -49,25 +49,26 @@ YOP;
                 <textarea id="comment" class="space" cols="100" rows="5" name="comment" maxlength="400"></textarea>
                 <input type="submit" class="space" value="Valider">
 YOP;
+            }
 
-}
-            $commentaires
-        }
-        else
-            $res = "<h1>Erreur : le billet n'existe pas !</h1>";
+            $commentaires = $this->source->commentaires()->get();
+            if(isset($commentaires)){
+                foreach($commentaires as $commentaire){
+                    $res .= <<<YOP
+                    <p class="c_aff">$commentaire->content</p>
+                    <div class="comment">
+                    <p> Auteur : $commentaire->auteur - Date: $commentaire->date</p>
+                    </div>
+YOP;
+                }
+            }
 
-            if(isset($_COOKIE["membre"])){
-                $res .= <<<YOP
-                <form method="post" action="{$this->cont['router']->pathFor('com_ajoute')}">
-                <label class="space" for="comment">Saisissez votre commentaire :</label>
-                <textarea id="comment" class="space" cols="100" rows="5" name="comment" maxlength="400"></textarea>
-                <input type="submit" class="space" value="Valider">
-YOP;        }
+            
         } else {
             $res = "<h1>Erreur : le billet n'existe pas !</h1>";
-            return $res;
         }
-    }
+    return $res;
+}
 
 
     public function liste() {
