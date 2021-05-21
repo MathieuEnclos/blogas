@@ -19,6 +19,7 @@ class MembreControleur {
         return $rs;
     }
 
+    //partie déconnexion
     public function deconnecte($rq, $rs, $args){
       if (isset($_COOKIE["membre"]))
       {
@@ -28,7 +29,7 @@ class MembreControleur {
       return $rs->withRedirect($this->cont->router->pathFor('billet_liste',['numPage' => 1]));
     }
 
-    //partie pour faire l'authentification - it's yours
+    //partie authentification de membre
     public function authentifie($rq, $rs, $args) {
         // Récupération variable POST + nettoyage
         $email = filter_var($rq->getParsedBodyParam('email'), FILTER_SANITIZE_STRING);
@@ -53,7 +54,7 @@ class MembreControleur {
           }
         }
 
-        // Ajout d'un flash - il faut récupérer le pseudo ou le nom associé dans la base pour l'afficher dans $nom
+        // Ajout d'un flash
           $this->cont->flash->addMessage('info', "Utilisateur $pseudo connecté !");
         // Retour de la réponse avec redirection
         return $rs->withRedirect($this->cont->router->pathFor('billet_liste',['numPage' =>1]));

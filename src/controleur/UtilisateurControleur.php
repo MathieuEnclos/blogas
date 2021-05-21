@@ -17,6 +17,7 @@ class UtilisateurControleur {
         return $rs;
     }
 
+    //récupération des données nouveau membre et insertion dans la base
     public function cree($rq, $rs, $args) {
         // Récupération variable POST + nettoyage
         $nom = filter_var($rq->getParsedBodyParam('nom'), FILTER_SANITIZE_STRING);

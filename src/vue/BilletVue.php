@@ -41,6 +41,7 @@ class BilletVue extends Vue {
             <li>Contenu : {$this->source->body}</li>
             </ul>
 YOP;
+            //si membre, espace de commentaire possible
             if(isset($_COOKIE["membre"])){
                 $urlCom = $this->cont['router']->pathFor('com_ajoute',['id' => $this->numPage]);
                 $res .= <<<YOP
@@ -51,6 +52,7 @@ YOP;
 YOP;
             }
 
+            //affichage des commentaires liés au billet
             $commentaires = $this->source->commentaires()->get();
             if(isset($commentaires)){
                 foreach($commentaires as $commentaire){

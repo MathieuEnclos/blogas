@@ -15,6 +15,7 @@ class MembreVue extends Vue {
         return $this->userPage($content);
     }
 
+    //interface de connexion
     public function connecte() {
         return <<<YOP
         <h1>Connexion</h1>

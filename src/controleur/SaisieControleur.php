@@ -18,6 +18,7 @@ class SaisieControleur {
         return $rs;
     }
 
+    //récupération de la saisie billet et insertion dans la base de données
     public function saisie($rq, $rs, $args){
         // Récupération variable POST + nettoyage
         $titre = filter_var($rq->getParsedBodyParam('titre'), FILTER_SANITIZE_STRING);

@@ -31,6 +31,7 @@ class BilletControleur {
         return $rs;
     }
 
+    //insertion commentaire base de données
     public function ajoute($rq, $rs, $args){
         $content = filter_var($rq->getParsedBodyParam('comment'), FILTER_SANITIZE_STRING);
         $billet = $args['id'];

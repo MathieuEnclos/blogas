@@ -15,6 +15,7 @@ class UtilisateurVue extends Vue {
         return $this->userPage($content);
     }
 
+    //interface d'inscription
     public function nouveau() {
         return <<<YOP
         <h1>Formulaire d'inscription</h1>

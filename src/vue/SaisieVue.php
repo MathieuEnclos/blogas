@@ -15,6 +15,7 @@ class SaisieVue extends Vue {
         return $this->userPage($content);
     }
 
+    //interface de saisie d'un billet
     public function nouveau(){
         return <<<YOP
         <h1>Nouveau billet</h1>
