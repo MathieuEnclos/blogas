@@ -32,8 +32,8 @@ class BilletControleur {
     }
 
     public function ajoute($rq, $rs, $args){
-        $content = filter_var($rq->getParsedBodyParam('content'), FILTER_SANITIZE_STRING);
-        $billet = $args['numPage'];
+        $content = filter_var($rq->getParsedBodyParam('comment'), FILTER_SANITIZE_STRING);
+        $billet = $args['id'];
         $auteur = $_COOKIE['membre'];
        
         $comment = new Commentaire();
@@ -43,7 +43,6 @@ class BilletControleur {
         $comment->save();
 
         $this->cont->flash->addMessage('info', "Billet posté :)");
-        return $rs;
-        
+        return $rs->withRedirect($this->cont->router->pathFor('billet_aff', ['id' => $billet]));
     }
 }
