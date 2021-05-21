@@ -89,3 +89,20 @@ input[type=text]:valid {
     display:block;
     margin: 0.5em 0 0 0; 
 }
+
+.liste{
+    margin : 2em 1em 1em 1em;
+    list-style-type:none;
+}
+
+.entree{
+    background-color : white;
+    margin : 0.5em;
+    padding : 1em;
+    border: 0.1em solid cornflowerblue;
+}
+
+a.lien{
+    text-decoration:none;
+    color:darkblue;
+}

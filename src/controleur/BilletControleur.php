@@ -32,11 +32,6 @@ class BilletControleur {
     }
 
     public function ajoute($rq, $rs, $args){
-        $id = $args['id'];
-        $billet = Billet::where('id', '=', $id)->first();
-        $bl = new BilletVue($this->cont, $billet, BilletVue::BILLET_VUE, "0");
-        $rs->getBody()->write($bl->render());
-
         $content = filter_var($rq->getParsedBodyParam('content'), FILTER_SANITIZE_STRING);
         $billet = $args['numPage'];
         $auteur = $_COOKIE['membre'];

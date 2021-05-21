@@ -13,10 +13,6 @@ use \blogapp\conf\ConnectionFactory;
 use \blogapp\controleur\UtilisateurControleur;
 use \blogapp\controleur\SaisieControleur;
 
-/**
- * poru accéder à la vue inscription : tapez /newutil dans url
- * pour accéder à la vue connexion : tapez /connexion dans url
- */
 
 // Création de la connexion à la base
 ConnectionFactory::makeConnection('src/conf/conf.ini');
@@ -60,10 +56,13 @@ $app->post('/commented',
 
 
 // routes d'inscription
+$app->get('/newutil',
+    '\blogapp\controleur\UtilisateurControleur:nouveau')
+->setName('util_nouveau');
+
 $app->post('/createutil',
           '\blogapp\controleur\UtilisateurControleur:ajoute')
     ->setName('util_cree');
-
 
 // routes nouveau billet
 $app->get('/newbill',

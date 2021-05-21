@@ -61,7 +61,7 @@ YOP;
         if ($this->source != null) {
             $res = <<<YOP
             <h1>Affichage de la liste des billets</h1>
-            <ul>
+            <ul class="liste">
 YOP;
 
             foreach ($this->source as $billet) {
@@ -70,7 +70,7 @@ YOP;
                 $cat =$billet->categorie;
                 $bil = "$billet->titre \  $billet->date \ $cat->titre \  $text";
                 $res .= <<<YOP
-                <li><a href="$url">$bil</a></li>
+                <li class="entree"><a class="lien" href="$url">$bil</a></li>
 YOP;
             }
             $res .= "</ul>";
